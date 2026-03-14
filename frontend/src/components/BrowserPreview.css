@@ -1,0 +1,13 @@
+/* BrowserPreview styles */
+.preview-viewport {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  min-height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.screenshot-img { width: 100%; display: block; border-radius: var(--radius-md); }
+.preview-placeholder { text-align: center; color: var(--text-muted); padding: var(--space-xl); }
+.preview-icon  { font-size: 40px; display: block; margin-bottom: var(--space-sm); }
+.preview-hint  { font-size: 11px; margin-top: 4px; color: var(--text-muted); }

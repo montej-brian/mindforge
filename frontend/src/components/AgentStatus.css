@@ -1,0 +1,24 @@
+/* AgentStatus styles */
+.ws-indicator { display: flex; align-items: center; gap: 6px; }
+.ws-label     { font-size: 11px; color: var(--text-muted); }
+
+.agent-list { display: flex; flex-direction: column; gap: var(--space-sm); }
+
+.agent-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 12px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+}
+.agent-row:hover { border-color: var(--border-accent); }
+
+.agent-icon { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
+.agent-info { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.agent-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.agent-msg  { font-size: 11px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.agent-status-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }

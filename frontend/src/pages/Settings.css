@@ -1,0 +1,13 @@
+/* Settings page styles */
+.settings-form { display: flex; flex-direction: column; gap: var(--space-md); }
+.settings-group { margin-bottom: 0; }
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border);
+}
+.setting-row:last-child { border-bottom: none; }
+.setting-label { font-size: 13px; color: var(--text-secondary); }

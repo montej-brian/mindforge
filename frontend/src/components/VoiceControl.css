@@ -1,0 +1,49 @@
+/* VoiceControl styles */
+.voice-control { text-align: center; }
+
+.mic-btn {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  margin: var(--space-md) auto;
+  transition: var(--transition);
+  font-size: 32px;
+}
+.mic-btn:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 20px rgba(124,58,237,0.3);
+}
+.mic-btn--active {
+  background: rgba(124,58,237,0.2);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 30px rgba(124,58,237,0.5);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.waveform {
+  display: flex; align-items: center; gap: 3px; height: 30px;
+}
+.wave-bar {
+  width: 4px;
+  background: var(--accent-secondary);
+  border-radius: 2px;
+  animation: waveform 0.8s ease-in-out infinite;
+}
+
+.mic-icon { line-height: 1; }
+.mic-label { font-size: 12px; color: var(--text-muted); margin-bottom: var(--space-sm); }
+
+.transcript-box {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  margin-top: var(--space-sm);
+  text-align: left;
+}
+.transcript-label { font-size: 11px; color: var(--text-muted); }
+.transcript-text  { font-size: 13px; color: var(--text-primary); margin-top: 2px; font-style: italic; }
+.voice-error { color: var(--accent-red); font-size: 12px; margin-top: var(--space-sm); }
