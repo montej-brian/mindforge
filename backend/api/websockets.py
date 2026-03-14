@@ -10,6 +10,7 @@ from typing import Set
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from models.schemas import WSEvent
+from models.protocol import MACPMessage
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -45,6 +46,18 @@ class ConnectionManager:
     async def send_to(self, websocket: WebSocket, event: WSEvent):
         """Send an event to a specific client."""
         await websocket.send_text(event.model_dump_json())
+
+    async def broadcast_macp(self, message: MACPMessage):
+        """Send a protocol-compliant message to all connected clients."""
+        payload = message.model_dump_json()
+        dead = set()
+        for ws in self.active_connections:
+            try:
+                await ws.send_text(payload)
+            except Exception:
+                dead.add(ws)
+        for ws in dead:
+            self.active_connections.discard(ws)
 
 
 # Shared manager instance — importable by agents for broadcasting

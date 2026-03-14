@@ -20,7 +20,16 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     """Application startup / shutdown lifecycle."""
     logger.info("🧠 MINDFORGE starting up...")
-    # Initialize browser session pool, DB connections, etc. here
+    
+    # Initialize database tables
+    from database import init_db
+    try:
+        await init_db()
+        logger.info("✅ Database initialized")
+    except Exception as e:
+        logger.error(f"❌ Database initialization failed: {e}")
+
+    # Initialize browser session pool, etc. here
     yield
     logger.info("🛑 MINDFORGE shutting down...")
 

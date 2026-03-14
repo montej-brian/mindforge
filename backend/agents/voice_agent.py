@@ -7,6 +7,7 @@ from typing import Dict, Any, Optional
 
 from services.voice_service import VoiceService
 from services.gemini_service import GeminiService
+from services.nlp_parser import NaturalLanguageParser
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +32,7 @@ class VoiceAgent:
     def __init__(self):
         self.voice_service = VoiceService()
         self.gemini = GeminiService()
+        self.parser = NaturalLanguageParser()
 
     def listen(self, timeout: int = 10) -> Optional[str]:
         """Listen for a voice command and return the transcribed text."""
@@ -40,26 +42,20 @@ class VoiceAgent:
             logger.info(f"Transcript: {transcript}")
         return transcript
 
-    def parse_intent(self, command: str) -> Dict[str, Any]:
+    async def parse_intent(self, command: str) -> Dict[str, Any]:
         """
         Parse a natural language voice command into a structured intent.
-        Returns a dict with action, target, parameters, priority.
+        Returns a dict representing the VoiceIntent model.
         """
-        import json
-        try:
-            prompt = INTENT_PROMPT.format(command=command)
-            raw = self.gemini.answer_question(prompt)
-            # Strip markdown code fences if present
-            raw = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-            return json.loads(raw)
-        except Exception as e:
-            logger.warning(f"Intent parsing failed, returning raw command: {e}")
+        response = await self.parser.parse(command)
+        if response.success:
+            return response.intent.model_dump()
+        else:
             return {
                 "action": "unknown",
                 "target": command,
-                "parameters": {},
-                "priority": "normal",
-                "natural_language": command,
+                "error": response.error,
+                "natural_language": response.suggested_response
             }
 
     def speak(self, text: str) -> None:
@@ -68,6 +64,6 @@ class VoiceAgent:
 
     async def process_command(self, command: str) -> Dict[str, Any]:
         """Full pipeline: parse intent → return structured task."""
-        intent = self.parse_intent(command)
+        intent = await self.parse_intent(command)
         logger.info(f"🎯 Parsed intent: {intent}")
         return intent

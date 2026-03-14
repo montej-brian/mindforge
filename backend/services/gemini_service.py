@@ -48,6 +48,9 @@ class GeminiService:
             messages.append(SystemMessage(content=system_context))
         messages.append(HumanMessage(content=prompt))
 
+        if not settings.gemini_api_key or settings.gemini_api_key == "MISSING_KEY":
+            return "[MOCK] Gemini API Key is missing. Please set GEMINI_API_KEY in your .env file."
+
         logger.debug(f"Gemini request: {prompt[:100]}...")
         response = self.llm.invoke(messages)
         return response.content

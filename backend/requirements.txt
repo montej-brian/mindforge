@@ -1,39 +1,29 @@
-fastapi>=0.111.0
-uvicorn[standard]>=0.29.0
-python-dotenv>=1.0.1
-pydantic>=2.7.0
-pydantic-settings>=2.2.0
+# --- Web Framework & Server ---
+fastapi==0.110.0            # High-performance web framework for building APIs
+uvicorn[standard]==0.29.0   # ASGI web server implementation for FastAPI
+websockets==12.0            # WebSocket support for real-time bidirectional communication
 
-# ─── AI / LangChain ───────────────────────────────────────────────────────────
-langchain>=0.2.1
-langchain-google-genai>=2.0.0
-langchain-community>=0.2.1
-google-generativeai>=0.5.4
+# --- AI & LLM Integration ---
+langchain==0.1.13           # Framework for developing applications powered by LLMs
+langchain-core==0.1.33      # Base abstractions and runtime core for LangChain
+langchain-community==0.0.29 # Third-party core integrations for LangChain
+google-generativeai==0.4.1  # Google Gemini SDK for state-of-the-art AI generation
 
-# ─── Browser Automation ───────────────────────────────────────────────────────
-selenium>=4.20.0
-webdriver-manager>=4.0.1
+# --- Speech & Audio ---
+SpeechRecognition==3.10.1   # Library for performing speech recognition (STT)
+pyttsx3==2.90               # Offline Text-to-Speech (TTS) conversion engine
+PyAudio==0.2.14             # Cross-platform audio I/O for microphone recording and playback
+pydub==0.25.1               # High-level audio manipulation (slicing, format conversion)
+numpy==1.26.4               # Matrix operations and array processing for audio/vision
 
-# ─── Voice ────────────────────────────────────────────────────────────────────
-SpeechRecognition>=3.10.0
-gTTS>=2.5.0
+# --- Computer Vision ---
+opencv-python==4.9.0.80     # Essential computer vision algorithms and image processing
+pytesseract==0.3.10         # Python wrapper for Google's Tesseract-OCR Engine
 
-# ─── Async / Networking ───────────────────────────────────────────────────────
-httpx>=0.27.0
-websockets>=12.0
-aiofiles>=23.2.0
+# --- Browser Automation ---
+selenium==4.18.1            # Browser automation framework for web scraping and tasks
+webdriver-manager==4.0.1    # Automatic management of binary drivers for Selenium
 
-# ─── Database (optional) ──────────────────────────────────────────────────────
-sqlalchemy>=2.0.30
-aiosqlite>=0.20.0
-
-# ─── Utils ────────────────────────────────────────────────────────────────────
-python-multipart>=0.0.9
-python-jose[cryptography]>=3.3.0
-tenacity>=8.3.0
-rich>=13.7.0
-
-# ─── Dev / Testing ────────────────────────────────────────────────────────────
-pytest>=8.2.0
-pytest-asyncio>=0.23.7
-ruff>=0.4.4
+# --- Utilities ---
+python-dotenv==1.0.1        # Reads key-value pairs from a .env file and sets them as environment variables
+pydantic==2.6.4             # Data validation and settings management using Python type hints

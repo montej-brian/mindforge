@@ -57,15 +57,15 @@ export default function Dashboard() {
   return (
     <div className="dashboard fade-in">
       <div className="page-header">
-        <h1 className="page-title">🧠 MINDFORGE Dashboard</h1>
+        <h1 className="page-title">MINDFORGE Dashboard</h1>
         <p className="page-subtitle">Voice-controlled multi-agent assignment automation</p>
       </div>
 
       <div className="stats-row">
-        <StatCard icon="📋" label="Pending"   value={pending}   color="var(--accent-yellow)" />
-        <StatCard icon="⚡" label="Running"   value={running}   color="var(--accent-secondary)" />
-        <StatCard icon="✅" label="Completed" value={completed} color="var(--accent-green)" />
-        <StatCard icon="🔗" label="WS Status" value={wsConnected ? 'Live' : 'Off'} color={wsConnected ? 'var(--accent-green)' : 'var(--accent-red)'} />
+        <StatCard label="Pending"   value={pending}   color="var(--accent-yellow)" />
+        <StatCard label="Running"   value={running}   color="var(--accent-secondary)" />
+        <StatCard label="Completed" value={completed} color="var(--accent-green)" />
+        <StatCard label="WS Status" value={wsConnected ? 'Live' : 'Off'} color={wsConnected ? 'var(--accent-green)' : 'var(--accent-red)'} />
       </div>
 
       <div className="dashboard-grid">
